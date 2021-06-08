@@ -21,6 +21,8 @@ git clone https://github.com/s21v1d9p/dwm
 cd dwm
 sudo make install
 
+```
+
 
 Running dwm
 -----------
