@@ -130,7 +130,8 @@ xfont_create(Drw *drw, const char *fontname, FcPattern *fontpattern)
 		}
 	} else {
 		die("no font specified.");
-	}	
+	}
+
 
 	font = ecalloc(1, sizeof(Fnt));
 	font->xfont = xfont;
