@@ -7,8 +7,8 @@
 #define TERMINAL "st"
 
 /* brightness */
-static const char *brightup[]       = { "xbacklight", "-inc", "10", NULL};
-static const char *brightdown[]     = { "xbacklight", "-dec", "10", NULL};
+static const char *brightup[]       = { "xbacklight", "-inc", "5", NULL};
+static const char *brightdown[]     = { "xbacklight", "-dec", "5", NULL};
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
