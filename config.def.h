@@ -81,6 +81,8 @@ static const char *dmenucmd[]    = { "dmenu_run", "-p", "Run: ", NULL };
 //static const char *dmenucmd[] = { dmenu_run, -m, dmenumon, -fn, dmenufont, -nb};
 /* col_gray1, -nf, col_gray3, -sb, col_cyan, -sf, col_gray4, NULL }; */
 static const char *termcmd[]     = { "st", NULL };
+static const char scratchpadname[] = "scratchpad";
+static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
 static const char *cmdprintscreen[]  = { "scrot", "-d3", "/home/svdp/Pictures/Screenshots/%Y-%m-%d-%s_$wx$h.png", NULL };
 static const char *cmdprintscreenf[]  = { "scrot", "-u", "/home/svdp/Pictures/Screenshots/%Y-%m-%d-%s_$wx$h.png", NULL };
 static const char *cmdprintscreens[]  = { "scrot", "-s", "/home/svdp/Pictures/Screenshots/%Y-%m-%d-%s_$wx$h.png", NULL };
@@ -108,6 +110,7 @@ static Key keys[] = {
 	{ Mod1Mask,	        	XK_Tab,	   shiftview,      {.i = -1}},//nextprevioustag
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },//dmenu open
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },//terminal open
+	{ MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },//bar hide or show
 	{ MODKEY,			XK_F1,	   spawn,          SHCMD("slock")},//lock screen
 	{ MODKEY|ShiftMask,		XK_f,	   spawn,	   SHCMD(TERMINAL " -e ranger")},
