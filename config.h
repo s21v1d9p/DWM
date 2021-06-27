@@ -1,14 +1,8 @@
 /* See LICENSE file for copyright and license details. */
 
-#include <X11/XF86keysym.h>
-
 /* constraint */
 
 #define TERMINAL "st"
-
-/* brightness */
-static const char *brightup[]       = { "xbacklight", "-inc", "5", NULL};
-static const char *brightdown[]     = { "xbacklight", "-dec", "5", NULL};
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
@@ -44,12 +38,12 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-	{ "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
-	{ "Firefox", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
-	{ "st-256color",      NULL,     NULL,           0,         0,          1,           0,        -1 },
-	{ "ranger",      NULL,     NULL,           0,         0,          1,           0,        -1 },
-	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
+	/* class        instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
+	{ "Gimp",       NULL,     NULL,           0,         1,          0,           0,        -1 },
+	{ "Firefox",    NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
+	{ "st-256color",NULL,     NULL,           0,         0,          1,           0,        -1 },
+	{ "ranger",     NULL,     NULL,           0,         0,          1,           0,        -1 },
+	{ NULL,         NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
 
 /* layout(s) */
@@ -64,7 +58,7 @@ static const Layout layouts[] = {
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
  	{ "[@]",      spiral },
- 	{ "[\\]",      dwindle },
+ 	{ "[\\]",     dwindle },
 };
 
 /* key definitions */
@@ -74,7 +68,6 @@ static const Layout layouts[] = {
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
-#define PrintScreenDWM	    0x0000ff61
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -87,37 +80,16 @@ static const char *dmenucmd[]    = { "dmenu_run", "-p", "Run: ", NULL };
 static const char *termcmd[]     = { "st", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
-static const char *cmdprintscreen[]  = { "scrot", "-d3", "/home/svdp/Pictures/Screenshots/%Y-%m-%d-%s_$wx$h.png", NULL };
-static const char *cmdprintscreenf[]  = { "scrot", "-u", "/home/svdp/Pictures/Screenshots/%Y-%m-%d-%s_$wx$h.png", NULL };
-static const char *cmdprintscreens[]  = { "scrot", "-s", "/home/svdp/Pictures/Screenshots/%Y-%m-%d-%s_$wx$h.png", NULL };
-
-
 
 #include"shiftview.c"
+#include <X11/XF86keysym.h>
+
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ 0,                         	0x1008ff02,spawn,          {.v = brightup } },//brightness
-        { 0,                            0x1008ff03,spawn,          {.v = brightdown } },//brightness
-	{ MODKEY,			XK_F5,	   spawn,	   {.v = brightdown } },//brightness
-	{ MODKEY,                       XK_F6,     spawn,          {.v = brightup } },//brightness
-	{ MODKEY,			XK_F11,	   spawn,	   SHCMD("pamixer -d 5; kill -44 $(pidof dwmblocks)") },   //audio
-	{ MODKEY,                       XK_F10,    spawn,          SHCMD("pamixer -t; kill -44 $(pidof dwmblocks)") }, //audio
-	{ MODKEY,                       XK_F12,    spawn,          SHCMD("pamixer -i 5; kill -44 $(pidof dwmblocks)") },   //audio
-	{ 0,               XF86XK_AudioLowerVolume,spawn,          SHCMD("pamixer -d 5; kill -44 $(pidof dwmblocks)") }, //audio
-	{ 0,               XF86XK_AudioMute,       spawn,          SHCMD("pamixer -t; kill -44 $(pidof dwmblocks)") }, //audio
-	{ 0,               XF86XK_AudioRaiseVolume,spawn,          SHCMD("pamixer -i 5; kill -44 $(pidof dwmblocks)") }, //audio
-	{ MODKEY|ShiftMask,		XK_w,	   spawn,	   SHCMD(TERMINAL " -e sudo nmtui") },
-	{ 0,                     PrintScreenDWM,   spawn,          {.v = cmdprintscreen } },//screenshot
-        { ShiftMask,     	 PrintScreenDWM,   spawn,          {.v = cmdprintscreens } },//screenshot
-        { Mod1Mask,      	 PrintScreenDWM,   spawn,          {.v = cmdprintscreenf } },//screenshot
-	{ MODKEY,			XK_Tab,	   shiftview,      {.i = +1}},//nextprevioustag
-	{ Mod1Mask,	        	XK_Tab,	   shiftview,      {.i = -1}},//nextprevioustag
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },//dmenu open
-	{ MODKEY,            		XK_Return, spawn,          {.v = termcmd } },//terminal open
+	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,            			XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
-	{ MODKEY,                       XK_b,      togglebar,      {0} },//bar hide or show
-	{ MODKEY,			XK_F1,	   spawn,          SHCMD("slock")},//lock screen
-	{ MODKEY|ShiftMask,		XK_f,	   spawn,	   SHCMD(TERMINAL " -e ranger")},
+	{ MODKEY,                       XK_b,      togglebar,      {0} },  /* bar hide or show */
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
@@ -125,6 +97,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
+	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
@@ -152,6 +125,22 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ 0,          XF86XK_MonBrightnessUp,      spawn,          SHCMD("xbacklight -inc 5") }, 
+	{ MODKEY,			           XK_F6,	   spawn,	       SHCMD("xbacklight -inc 5") },
+    { 0,        XF86XK_MonBrightnessDown,      spawn,          SHCMD("xbacklight -dec 5") }, 
+	{ MODKEY,                      XK_F5,      spawn,          SHCMD("xbacklight -dec 5") },  
+	{ 0,         XF86XK_AudioLowerVolume,      spawn,          SHCMD("pamixer -d 5") },
+	{ MODKEY,			          XK_F11,	   spawn,	       SHCMD("pamixer -d 5") },    
+	{ 0,                XF86XK_AudioMute,      spawn,          SHCMD("pamixer -t") },
+	{ MODKEY,                     XK_F10,      spawn,          SHCMD("pamixer -t") },  
+	{ 0,         XF86XK_AudioRaiseVolume,      spawn,          SHCMD("pamixer -i 5") },
+	{ MODKEY,                     XK_F12,      spawn,          SHCMD("pamixer -i 5") },
+	{ MODKEY|ShiftMask,		        XK_w,	   spawn,	   	   SHCMD(TERMINAL " -e sudo nmtui") },
+	{ 0,                      0x0000ff61,      spawn,          SHCMD("flameshot") },
+	{ MODKEY,			 XK_bracketright,	   shiftview,      {.i = +1}},
+	{ MODKEY,	          XK_bracketleft,	   shiftview,      {.i = -1}},
+	{ MODKEY,					   XK_F1,	   spawn,          SHCMD("slock")},
+	{ MODKEY|ShiftMask,			    XK_f,	   spawn,	       SHCMD(TERMINAL " -e ranger")},
 };
 
 /* button definitions */
@@ -161,7 +150,7 @@ static Button buttons[] = {
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
-//	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
+	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
