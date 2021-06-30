@@ -15,7 +15,7 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Fira Sans SemiBold:size=13", "Fira Sans Book:size=10", "Roboto Regular:size=11", "Fira Mono Regular:size=11", "JoyPixels:pixelsize=10:antialias=true:autohint=true" };
+static const char *fonts[]          = { "Fira Sans SemiBold:size=13", "Fira Sans Book:size=10", "Roboto Regular:size=11", "Fira Mono Regular:size=11", "JoyPixels:pixelsize=13:antialias=true:autohint=true" };
 static const char dmenufont[]       = "Fira Sans SemiBold:size=13";
 
 #include "/home/svdp/.cache/wal/colors-wal-dwm.h"
@@ -88,9 +88,10 @@ static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,            			XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
+	{ MODKEY,                   XK_space,      spawn,          {.v = dmenucmd } },
+	{ 0,		       XF86XK_Search,      spawn,	   {.v = dmenucmd } },
+	{ MODKEY,            	   XK_Return,      spawn,          {.v = termcmd } },
+	{ MODKEY,                   XK_grave,      togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },  /* bar hide or show */
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -98,8 +99,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
-	{ MODKEY,                       XK_Tab,    view,           {0} },
+	{ MODKEY|ShiftMask,        XK_Return,      zoom,           {0} },
+	{ MODKEY,                     XK_Tab,      view,           {0} },
 	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
@@ -108,17 +109,17 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[4]} },
 	{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[5]} },
 	{ MODKEY,                       XK_o,      setlayout,      {.v = &layouts[6]} },
-	{ MODKEY,                       XK_space,  setlayout,      {0} },
-	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
+	{ MODKEY,                       XK_p,  	   setlayout,      {0} },
+	{ MODKEY|ShiftMask,         XK_space,      togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
-	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
-	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
-	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
+	{ MODKEY,                   XK_comma,      focusmon,       {.i = -1 } },
+	{ MODKEY,                  XK_period,      focusmon,       {.i = +1 } },
+	{ MODKEY|ShiftMask,         XK_comma,      tagmon,         {.i = -1 } },
+	{ MODKEY|ShiftMask,        XK_period,      tagmon,         {.i = +1 } },
+	{ MODKEY,                   XK_minus,      setgaps,        {.i = -1 } },
+	{ MODKEY,                   XK_equal,      setgaps,        {.i = +1 } },
+	{ MODKEY|ShiftMask,         XK_equal,      setgaps,        {.i = 0  } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -130,21 +131,23 @@ static Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ 0,          XF86XK_MonBrightnessUp,      spawn,          SHCMD("xbacklight -inc 5") }, 
-	{ MODKEY,			           XK_F6,	   spawn,	       SHCMD("xbacklight -inc 5") },
-    { 0,        XF86XK_MonBrightnessDown,      spawn,          SHCMD("xbacklight -dec 5") }, 
+	{ MODKEY,		       XK_F6,	   spawn,	   SHCMD("xbacklight -inc 5") },
+        { 0,        XF86XK_MonBrightnessDown,      spawn,          SHCMD("xbacklight -dec 5") }, 
 	{ MODKEY,                      XK_F5,      spawn,          SHCMD("xbacklight -dec 5") },  
 	{ 0,         XF86XK_AudioLowerVolume,      spawn,          SHCMD("pamixer -d 5") },
-	{ MODKEY,			          XK_F11,	   spawn,	       SHCMD("pamixer -d 5") },    
+	{ MODKEY,		      XK_F11,	   spawn,	   SHCMD("pamixer -d 5") },    
 	{ 0,                XF86XK_AudioMute,      spawn,          SHCMD("pamixer -t") },
 	{ MODKEY,                     XK_F10,      spawn,          SHCMD("pamixer -t") },  
 	{ 0,         XF86XK_AudioRaiseVolume,      spawn,          SHCMD("pamixer -i 5") },
 	{ MODKEY,                     XK_F12,      spawn,          SHCMD("pamixer -i 5") },
-	{ MODKEY|ShiftMask,		        XK_w,	   spawn,	   	   SHCMD(TERMINAL " -e sudo nmtui") },
+	{ MODKEY|ShiftMask,		XK_w,	   spawn,	   SHCMD(TERMINAL " -e sudo nmtui") },
 	{ 0,                      0x0000ff61,      spawn,          SHCMD("flameshot") },
-	{ MODKEY,			 XK_bracketright,	   shiftview,      {.i = +1}},
-	{ MODKEY,	          XK_bracketleft,	   shiftview,      {.i = -1}},
-	{ MODKEY,					   XK_F1,	   spawn,          SHCMD("slock")},
-	{ MODKEY|ShiftMask,			    XK_f,	   spawn,	       SHCMD(TERMINAL " -e ranger")},
+	{ MODKEY,	     XK_bracketright,	   shiftview,      {.i = +1}},
+	{ Mod1Mask,		      XK_Tab,      shiftview,	   {.i = +1}},
+	{ MODKEY,	      XK_bracketleft,	   shiftview,      {.i = -1}},
+	{ Mod1Mask|ShiftMask,	      XK_Tab,	   shiftview,	   {.i = -1}},
+	{ MODKEY,		       XK_F1,	   spawn,          SHCMD("slock")},
+	{ MODKEY|ShiftMask,		XK_f,	   spawn,	   SHCMD(TERMINAL " -e ranger")},
 };
 
 /* button definitions */
