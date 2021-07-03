@@ -80,7 +80,7 @@ static const char *dmenucmd[]    = { "dmenu_run", "-p", "Run: ", NULL };
 //static const char *dmenucmd[] = { dmenu_run, -m, dmenumon, -fn, dmenufont, -nb};
 /* col_gray1, -nf, col_gray3, -sb, col_cyan, -sf, col_gray4, NULL }; */
 static const char *termcmd[]     = { "st", NULL };
-static const char scratchpadname[] = "scratchpad";
+static const char scratchpadname[] = "Svdp's Terminal";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
 
 #include"shiftview.c"
@@ -129,7 +129,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ MODKEY|ShiftMask,             XK_q,      spawn,           SHCMD("xkill") },
 	{ 0,          XF86XK_MonBrightnessUp,      spawn,          SHCMD("xbacklight -inc 5") }, 
 	{ MODKEY,		       XK_F6,	   spawn,	   SHCMD("xbacklight -inc 5") },
         { 0,        XF86XK_MonBrightnessDown,      spawn,          SHCMD("xbacklight -dec 5") }, 
@@ -148,6 +148,8 @@ static Key keys[] = {
 	{ Mod1Mask|ShiftMask,	      XK_Tab,	   shiftview,	   {.i = -1}},
 	{ MODKEY,		       XK_F1,	   spawn,          SHCMD("slock")},
 	{ MODKEY|ShiftMask,		XK_f,	   spawn,	   SHCMD(TERMINAL " -e ranger")},
+	{ MODKEY,   		   XK_Escape,      quit,	   {0} }, 
+
 };
 
 /* button definitions */
