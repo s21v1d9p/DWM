@@ -122,7 +122,8 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_q,      spawn,           SHCMD("xkill") },
+	{ MODKEY,			XK_w,	   spawn,	   SHCMD("$BROWSER") },
+	{ MODKEY|ShiftMask,             XK_q,      spawn,          SHCMD("xkill") },
 	{ 0,          XF86XK_MonBrightnessUp,      spawn,          SHCMD("xbacklight -inc 5") }, 
 	{ MODKEY,		       XK_F6,	   spawn,	   SHCMD("xbacklight -inc 5") },
         { 0,        XF86XK_MonBrightnessDown,      spawn,          SHCMD("xbacklight -dec 5") }, 
@@ -138,11 +139,12 @@ static Key keys[] = {
 	{ MODKEY,	     XK_bracketright,	   shiftview,      {.i = +1}},
 	{ Mod1Mask,		      XK_Tab,      shiftview,	   {.i = +1}},
 	{ MODKEY,	      XK_bracketleft,	   shiftview,      {.i = -1}},
-	{ Mod1Mask|ShiftMask,	      XK_Tab,	   shiftview,	   {.i = -1}},
+	{ Mod1Mask,	            XK_grave,	   shiftview,	   {.i = -1}},
 	{ 0,		  XF86XK_ScreenSaver,	   spawn,          SHCMD("slock")},
 	{ MODKEY,		       XK_F7,      spawn,	   SHCMD("slock")},
 	{ MODKEY|ShiftMask,		XK_f,	   spawn,	   SHCMD(TERMINAL " -e ranger")},
-	{ MODKEY,   		   XK_Escape,      quit,	   {0} }, 
+	{ MODKEY|ShiftMask,   	   XK_Escape,      quit,	   {0} }, 
+        { MODKEY,                  XK_Escape,      spawn,          SHCMD("sysact") },
 
 };
 
