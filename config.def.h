@@ -124,10 +124,10 @@ static Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY,			XK_w,	   spawn,	   SHCMD("$BROWSER") },
 	{ MODKEY|ShiftMask,             XK_q,      spawn,          SHCMD("xkill") },
-	{ 0,          XF86XK_MonBrightnessUp,      spawn,          SHCMD("xbacklight -inc 5") }, 
-	{ MODKEY,		       XK_F6,	   spawn,	   SHCMD("xbacklight -inc 5") },
-        { 0,        XF86XK_MonBrightnessDown,      spawn,          SHCMD("xbacklight -dec 5") }, 
-	{ MODKEY,                      XK_F5,      spawn,          SHCMD("xbacklight -dec 5") },  
+	{ 0,          XF86XK_MonBrightnessUp,      spawn,          SHCMD("xbacklight -inc 5.000000") }, 
+	{ MODKEY,		       XK_F6,	   spawn,	   SHCMD("xbacklight -inc 5.000000") },
+        { 0,        XF86XK_MonBrightnessDown,      spawn,          SHCMD("xbacklight -dec 5.000000") }, 
+	{ MODKEY,                      XK_F5,      spawn,          SHCMD("xbacklight -dec 5.000000") },  
 	{ 0,         XF86XK_AudioLowerVolume,      spawn,          SHCMD("pamixer -d 5") },
 	{ MODKEY,		      XK_F11,	   spawn,	   SHCMD("pamixer -d 5") },    
 	{ 0,                XF86XK_AudioMute,      spawn,          SHCMD("pamixer -t") },
@@ -145,6 +145,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_f,	   spawn,	   SHCMD(TERMINAL " -e ranger")},
 	{ MODKEY|ShiftMask,   	   XK_Escape,      quit,	   {0} }, 
         { MODKEY,                  XK_Escape,      spawn,          SHCMD("sysact") },
+	{ MODKEY,		        XK_c,      spawn,          SHCMD("clipmenu") },
 
 };
 
