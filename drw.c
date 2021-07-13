@@ -95,6 +95,7 @@ drw_free(Drw *drw)
 {
 	XFreePixmap(drw->dpy, drw->drawable);
 	XFreeGC(drw->dpy, drw->gc);
+	drw_fontset_free(drw->fonts);
 	free(drw);
 }
 
@@ -131,7 +132,6 @@ xfont_create(Drw *drw, const char *fontname, FcPattern *fontpattern)
 	} else {
 		die("no font specified.");
 	}
-
 
 	font = ecalloc(1, sizeof(Fnt));
 	font->xfont = xfont;
