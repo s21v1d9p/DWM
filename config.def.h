@@ -142,8 +142,7 @@ static Key keys[] = {
 	{ Mod1Mask,	            XK_grave,	   shiftview,	   {.i = -1}},
 	{ 0,		  XF86XK_ScreenSaver,	   spawn,          SHCMD("slock")},
 	{ MODKEY,		       XK_F7,      spawn,	   SHCMD("slock")},
-	{ MODKEY|ShiftMask,		XK_f,	   spawn,	   SHCMD(TERMINAL " -e ranger")},
-	{ MODKEY|ShiftMask,   	   XK_Escape,      quit,	   {0} }, 
+	{ MODKEY|ShiftMask,		XK_f,	   spawn,	   SHCMD(TERMINAL " -e ranger") }, 
         { MODKEY,                  XK_Escape,      spawn,          SHCMD("sysact") },
 	{ MODKEY,		        XK_c,      spawn,          SHCMD("clipmenu") },
 
