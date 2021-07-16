@@ -3,6 +3,7 @@
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
+static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const unsigned int gappih    = 10;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
 static const unsigned int gappoh    = 10;       /* horiz outer gap between windows and screen edge */
@@ -55,18 +56,15 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",	  NULL,			NULL,		0,			1,			 -1 },
-	{ "Firefox",  NULL,			NULL,		1 << 8,			0,			 -1 },
-	{ NULL,		  "spterm",		NULL,		SPTAG(0),		1,			 -1 },
-	{ NULL,		  "spfm",		NULL,		SPTAG(1),		1,			 -1 },
-	{ NULL,		  "volume",	        NULL,		SPTAG(2),		1,			 -1 },
+	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
+	{ "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
+	{ "Firefox", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
+	{ "st-256color",      NULL,     NULL,           0,         0,          1,           0,        -1 },
+	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
+	{ NULL,		 "spterm", NULL,		SPTAG(0),	  1,		  1,	       0,        -1 },
+	{ NULL,		 "spfm",   NULL,		SPTAG(1),	  1,		  0,	      -1,        -1 },
+	{ NULL,		 "volume", NULL,		SPTAG(2),	  1,		  0,	      -1,        -1 },
 };
-
-/* window swallowing */
-static const int swaldecay = 3;
-static const int swalretroactive = 1;
-static const char swalsymbol[] = "👅";
 
 /* layout(s) */
 static const float mfact     = 0.50; /* factor of master area size [0.05..0.95] */
@@ -146,7 +144,6 @@ static Key keys[] = {
 	{ MODKEY,            		XK_grave,  togglescratch,  {.ui = 0 } },
 	{ MODKEY,			XK_r,	   togglescratch,  {.ui = 1 } },
 	{ MODKEY,            		XK_v,	   togglescratch,  {.ui = 2 } },
-	{ MODKEY,                       XK_u,      swalstopsel,    {0} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -192,8 +189,6 @@ static Button buttons[] = {
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
-//	{ ClkClientWin,         MODKEY,         Button1,        resizemouse,    {0} },
-	{ ClkClientWin,         MODKEY|ShiftMask, Button1,      swalmouse,      {0} },
 	{ ClkTagBar,            0,              Button1,        view,           {0} },
 	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
