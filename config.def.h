@@ -1,3 +1,12 @@
+/*
+ ____       ____
+/ ___|_   _|  _ \ _ __
+\___ \ \ / / | | | '_ \
+ ___) \ V /| |_| | |_) |
+|____/ \_/ |____/| .__/
+                 |_|
+*/
+
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
@@ -106,7 +115,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
+	{ MODKEY,                       XK_u,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
