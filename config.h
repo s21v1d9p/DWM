@@ -65,14 +65,14 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-	{ "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
-	{ "Firefox", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
-	{ "st-256color",      NULL,     NULL,           0,         0,          1,           0,        -1 },
-	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
-	{ NULL,		 "spterm", NULL,		SPTAG(0),	  1,		  1,	       0,        -1 },
-	{ NULL,		 "spfm",   NULL,		SPTAG(1),	  1,		  0,	      -1,        -1 },
-	{ NULL,		 "volume", NULL,		SPTAG(2),	  1,		  0,	      -1,        -1 },
+	/* class        instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
+	{ "Gimp",       NULL,     NULL,           0,         1,          0,           0,        -1 },
+	{ "Firefox",    NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
+	{ "st-256color",NULL,     NULL,           0,         0,          1,           0,        -1 },
+	{ NULL,         NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
+	{ NULL,		"spterm", NULL,		  SPTAG(0),  1,		 1,	      0,        -1 },
+	{ NULL,		"spfm",   NULL,		  SPTAG(1),  1,		 0,	      -1,       -1 },
+	{ NULL,		"volume", NULL,		  SPTAG(2),  1,		 0,	      -1,       -1 },
 };
 
 /* layout(s) */
@@ -102,15 +102,19 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[]    = { "dmenu_run", "-p", "Run: ", NULL };
 static const char *termcmd[]  = { "st", NULL };
+static const char *cmdprintscreen[]  = { "scrot", "-d3", "/home/svdp/Pictures/Screenshots/%Y-%m-%d-%s_$wx$h.png", NULL };
+static const char *cmdprintscreenf[]  = { "scrot", "-u", "/home/svdp/Pictures/Screenshots/%Y-%m-%d-%s_$wx$h.png", NULL };
+static const char *cmdprintscreens[]  = { "scrot", "-s", "/home/svdp/Pictures/Screenshots/%Y-%m-%d-%s_$wx$h.png", NULL };
 
 #define TERMINAL "st"
+#define PrintScreenDWM 0x0000ff61
 #include"shiftview.c"
 #include <X11/XF86keysym.h>
 
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                   XK_space,  spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_space,  spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
@@ -180,7 +184,10 @@ static Key keys[] = {
 	{ 0,         XF86XK_AudioRaiseVolume,      spawn,          SHCMD("pamixer -i 5") },
 	{ MODKEY,                     XK_F12,      spawn,          SHCMD("pamixer -i 5") },
 	{ MODKEY|ShiftMask,		XK_w,	   spawn,	   SHCMD(TERMINAL " -e nmtui") },
-	{ 0,                      0x0000ff61,      spawn,          SHCMD("flameshot") },
+	{ MODKEY,             PrintScreenDWM,      spawn,          SHCMD("flameshot") },
+	{ 0,                  PrintScreenDWM,      spawn,          {.v = cmdprintscreen } },
+        { ShiftMask,          PrintScreenDWM,      spawn,          {.v = cmdprintscreens } },
+        { Mod1Mask,           PrintScreenDWM,      spawn,          {.v = cmdprintscreenf } },
 	{ 0,		  XF86XK_ScreenSaver,	   spawn,          SHCMD("slock")},
 	{ MODKEY,		       XK_F7,      spawn,	   SHCMD("slock")},
         { MODKEY,                  XK_Escape,      spawn,          SHCMD("sysact") },
