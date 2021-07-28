@@ -25,7 +25,8 @@ static const char *fonts[]          = {	"Fira Sans SemiBold:size=12:antialias=tr
                                         "Fira Sans Book:size=9:antialias=true:autohint=true" ,
 					"Roboto Regular:size=10:antialias=true:autohint=true" ,
 					"Fira Mono Regular:size=10:antialias=true:autohint=true" ,
-					"Noto Color Emoji:size=10:antialias=true:autohint=true" , };				
+					"Noto Color Emoji:size=10:antialias=true:autohint=true" ,
+					"Noto Sans:size=12:antialias=true:autohint=true" };				
 #include "/home/svdp/.cache/wal/colors-wal-dwm.h"
 /* static const char col_gray1[]    = "#222222";
 static const char col_gray2[]       = "#444444";
