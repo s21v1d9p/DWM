@@ -112,6 +112,7 @@ static const char *cmdprintscreens[]  = { "scrot", "-s", "/home/svdp/Pictures/Sc
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_space,  spawn,          {.v = dmenucmd } },
+	{ MODKEY|ShiftMask,	        XK_e,      spawn,	   SHCMD("dmenuunicode") },		
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
@@ -169,12 +170,13 @@ static Key keys[] = {
 	{ MODKEY,                     XK_F10,      spawn,          SHCMD("pamixer -t") },  
 	{ 0,         XF86XK_AudioRaiseVolume,      spawn,          SHCMD("pamixer -i 5") },
 	{ MODKEY,                     XK_F12,      spawn,          SHCMD("pamixer -i 5") },
-	{ MODKEY|ShiftMask,		XK_w,	   spawn,	   SHCMD(TERMINAL " -e nmtui") },
+	{ MODKEY|ShiftMask,		XK_w,	   spawn,	   SHCMD("brave || brave-beta") },
 	{ MODKEY,             PrintScreenDWM,      spawn,          SHCMD("flameshot") },
 	{ 0,                  PrintScreenDWM,      spawn,          {.v = cmdprintscreen } },
         { ShiftMask,          PrintScreenDWM,      spawn,          {.v = cmdprintscreens } },
         { Mod1Mask,           PrintScreenDWM,      spawn,          {.v = cmdprintscreenf } },
-	{ 0,		  XF86XK_ScreenSaver,	   spawn,          SHCMD("slock")},
+	{ 0,		  XF86XK_ScreenSaver,	   spawn,          SHCMD("slock") },
+	{ MODKEY|ShiftMask,	        XK_t,      spawn,          SHCMD("thunar") },
 	{ MODKEY,		       XK_F7,      spawn,	   SHCMD("slock")},
         { MODKEY,                  XK_Escape,      spawn,          SHCMD("sysact") },
 	{ MODKEY,		        XK_c,      spawn,          SHCMD("clipmenu") },
