@@ -11,7 +11,6 @@
 
 /* appearance */
 static const unsigned int borderpx  = 3;        /* border pixel of windows */
-static const Gap default_gap        = {.isgap = 1, .realgap = 5, .gappx = 5};
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
@@ -141,10 +140,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-        { MODKEY,                       XK_minus,  setgaps,        {.i = -5 } },
-        { MODKEY,                       XK_equal,  setgaps,        {.i = +5 } },
-        { MODKEY|ShiftMask,             XK_minus,  setgaps,        {.i = GAP_RESET } },
-        { MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = GAP_TOGGLE} },
         { MODKEY,            		XK_grave,  togglescratch,  {.ui = 0 } },
 	{ MODKEY,			XK_r,	   togglescratch,  {.ui = 1 } },
 	{ MODKEY,            		XK_v,	   togglescratch,  {.ui = 2 } },
