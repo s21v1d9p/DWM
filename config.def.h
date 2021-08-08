@@ -10,7 +10,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 5;        /* border pixel of windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
@@ -160,7 +160,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ MODKEY,			XK_w,	   spawn,	   SHCMD("$BROWSER") },
-	{ MODKEY|ShiftMask,             XK_q,      spawn,          SHCMD("xkill") },
+	{ ControlMask|ShiftMask,   XK_Escape,      spawn,          SHCMD("xkill") },
 	{ MODKEY,	     XK_bracketright,	   shiftview,      {.i = +1}},
 	{ Mod1Mask,		      XK_Tab,      shiftview,	   {.i = +1}},
 	{ MODKEY,	      XK_bracketleft,	   shiftview,      {.i = -1}},
@@ -175,7 +175,7 @@ static Key keys[] = {
 	{ MODKEY,                     XK_F10,      spawn,          SHCMD("pamixer -t") },  
 	{ 0,         XF86XK_AudioRaiseVolume,      spawn,          SHCMD("pamixer -i 5") },
 	{ MODKEY,                     XK_F12,      spawn,          SHCMD("pamixer -i 5") },
-	{ MODKEY|ShiftMask,		XK_w,	   spawn,	   SHCMD("brave || brave-beta") },
+	{ MODKEY|ShiftMask,		XK_w,	   spawn,	   SHCMD("$ABROWSER") },
 	{ MODKEY,             PrintScreenDWM,      spawn,          SHCMD("flameshot") },
 	{ 0,                  PrintScreenDWM,      spawn,          {.v = cmdprintscreen } },
         { ShiftMask,          PrintScreenDWM,      spawn,          {.v = cmdprintscreens } },
