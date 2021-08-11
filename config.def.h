@@ -20,25 +20,25 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = {	"Fira Sans SemiBold:size=12" ,
-                                        "Fira Sans Book:size=9" ,
-					"Roboto Regular:size=10" ,
-					"Fira Mono Regular:size=10" ,
-					"Noto Color Emoji:size=10:antialias=true:autohint=true" ,
-					"Noto Sans:size=12" };				
+static const char *fonts[]          = {	"Fira Sans SemiBold:size=11:antialias=true:autohint=true" ,
+                                        "Fira Sans Book:size=8:antialias=true:autohint=true" ,
+					"Roboto Regular:size=9:antialias=true:autohint=true" ,
+					"Fira Mono Regular:size=9:antialias=true:autohint=true" ,
+					"Noto Color Emoji:size=9:antialias=true:autohint=true" ,
+					"Noto Sans Bengali:size=11:antialias=true:autohint=true" };				
 #include "/home/svdp/.cache/wal/colors-wal-dwm.h"
-/* static const char col_gray1[]    = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
-static const char col_urgborder[]   = "#ff0000";
-static const char *colors[][3]      = {
-	*               fg         bg         border   *
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
-	[SchemeUrg]  = { col_gray4, col_cyan,  col_urgborder  },
-};*/
+//static const char col_gray1[]       = "#222222";
+//static const char col_gray2[]       = "#444444";
+//static const char col_gray3[]       = "#bbbbbb";
+//static const char col_gray4[]       = "#eeeeee";
+//static const char col_cyan[]        = "#005577";
+//static const char col_urgborder[]   = "#ff0000";
+//static const char *colors[][3]      = {
+	/*               fg         bg         border   */
+//	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
+//	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+//	[SchemeUrg]  = { col_gray4, col_cyan,  col_urgborder  },
+//};
 
 typedef struct {
 	const char *name;
@@ -85,7 +85,7 @@ static const Layout layouts[] = {
 	{ "|M|",      centeredmaster },
 	{ ">M>",      centeredfloatingmaster },
  	{ "[@]",      spiral },
- 	{ "[\\]",      dwindle },
+ 	{ "[\\]",     dwindle },
 
 };
 
