@@ -20,12 +20,7 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = {	"Fira Sans SemiBold:size=11:antialias=true:autohint=true" ,
-                                        "Fira Sans Book:size=8:antialias=true:autohint=true" ,
-					"Roboto Regular:size=9:antialias=true:autohint=true" ,
-					"Fira Mono Regular:size=9:antialias=true:autohint=true" ,
-					"Noto Color Emoji:size=9:antialias=true:autohint=true" ,
-					"Noto Sans Bengali:size=11:antialias=true:autohint=true" };				
+static const char *fonts[]          = {	"JetBrains Mono SemiBold:size=11", "Noto Color Emoji:size=9:antialias=true:autohint=true" };
 #include "/home/svdp/.cache/wal/colors-wal-dwm.h"
 //static const char col_gray1[]       = "#222222";
 //static const char col_gray2[]       = "#444444";
