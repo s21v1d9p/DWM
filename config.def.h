@@ -100,9 +100,6 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[]    = { "dmenu_run", "-p", "Run: ", NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
-static const char *cmdprintscreen[]  = { "scrot", "-d3", "/home/svdp/Pictures/Screenshots/%Y-%m-%d-%s_$wx$h.png", NULL };
-static const char *cmdprintscreenf[]  = { "scrot", "-u", "/home/svdp/Pictures/Screenshots/%Y-%m-%d-%s_$wx$h.png", NULL };
-static const char *cmdprintscreens[]  = { "scrot", "-s", "/home/svdp/Pictures/Screenshots/%Y-%m-%d-%s_$wx$h.png", NULL };
 
 #define TERMINAL "st"
 #define PrintScreenDWM 0x0000ff61
@@ -173,9 +170,9 @@ static Key keys[] = {
 	{ MODKEY,                     XK_F12,      spawn,          SHCMD("pamixer -i 5") },
 	{ MODKEY|ShiftMask,		XK_w,	   spawn,	   SHCMD("$ABROWSER") },
 	{ MODKEY,             PrintScreenDWM,      spawn,          SHCMD("flameshot") },
-	{ 0,                  PrintScreenDWM,      spawn,          {.v = cmdprintscreen } },
-        { ShiftMask,          PrintScreenDWM,      spawn,          {.v = cmdprintscreens } },
-        { Mod1Mask,           PrintScreenDWM,      spawn,          {.v = cmdprintscreenf } },
+	{ 0,                  PrintScreenDWM,      spawn,          SHCMD("maim ~/Pictures/Screenshots/$(date +%s).png") },
+        { ShiftMask,          PrintScreenDWM,      spawn,          SHCMD("maim --select | tee ~/Pictures/Screenshots/$(date +%s).png | xclip -selection clipboard -t image/png") },
+        { Mod1Mask,           PrintScreenDWM,      spawn,          SHCMD("maim -i $(xdotool getactivewindow) ~/Pictures/Screenshots/$(date +%s).png") },
 	{ 0,		  XF86XK_ScreenSaver,	   spawn,          SHCMD("slock") },
 	{ MODKEY|ShiftMask,	        XK_t,      spawn,          SHCMD("thunar") },
 	{ MODKEY,		       XK_F7,      spawn,	   SHCMD("slock")},
