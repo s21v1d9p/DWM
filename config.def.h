@@ -178,6 +178,7 @@ static Key keys[] = {
 	{ MODKEY,		       XK_F7,      spawn,	   SHCMD("slock")},
         { MODKEY,                  XK_Escape,      spawn,          SHCMD("sysact") },
 	{ MODKEY,		        XK_c,      spawn,          SHCMD("clipmenu") },
+	{ MODKEY|ShiftMask,		XK_b,      spawn,	   SHCMD("dmenu-bluetooth") },
 };
 
 /* button definitions */
