@@ -20,7 +20,7 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = {	"JetBrains Mono SemiBold:size=11", "Noto Color Emoji:size=9:antialias=true:autohint=true" };
+static const char *fonts[]          = {	"JetBrains Mono SemiBold:size=11:antialias=true:autohint=true", "Noto Color Emoji:size=9:antialias=true:autohint=true" };
 
 static const char norm_fg[] = "#b2b9b7";
 static const char norm_bg[] = "#080916";
