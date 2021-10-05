@@ -70,7 +70,7 @@ static const Rule rules[] = {
 /* layout(s) */
 static const float mfact     = 0.50; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */ 
 
 #include "fibonacci.c"
@@ -159,16 +159,16 @@ static Key keys[] = {
 	{ Mod1Mask,		      XK_Tab,      shiftview,	   {.i = +1}},
 	{ MODKEY,	      XK_bracketleft,	   shiftview,      {.i = -1}},
 	{ Mod1Mask,	            XK_grave,	   shiftview,	   {.i = -1}},
-	{ 0,          XF86XK_MonBrightnessUp,      spawn,          SHCMD("xbacklight -inc 5.000000") }, 
-	{ MODKEY,		       XK_F6,	   spawn,	   SHCMD("xbacklight -inc 5.000000") },
-        { 0,        XF86XK_MonBrightnessDown,      spawn,          SHCMD("xbacklight -dec 5.000000") }, 
-	{ MODKEY,                      XK_F5,      spawn,          SHCMD("xbacklight -dec 5.000000") },  
-	{ 0,         XF86XK_AudioLowerVolume,      spawn,          SHCMD("pamixer -d 5") },
-	{ MODKEY,		      XK_F11,	   spawn,	   SHCMD("pamixer -d 5") },    
-	{ 0,                XF86XK_AudioMute,      spawn,          SHCMD("pamixer -t") },
-	{ MODKEY,                     XK_F10,      spawn,          SHCMD("pamixer -t") },  
-	{ 0,         XF86XK_AudioRaiseVolume,      spawn,          SHCMD("pamixer -i 5") },
-	{ MODKEY,                     XK_F12,      spawn,          SHCMD("pamixer -i 5") },
+	{ 0,          XF86XK_MonBrightnessUp,      spawn,          SHCMD("xbacklight -inc 5.000000 | notify-send 🔆$(xbacklight -get | cut -f1 -d'.')") }, 
+	{ MODKEY,		       XK_F6,	   spawn,	   SHCMD("xbacklight -inc 5.000000 | notify-send 🔆$(xbacklight -get | cut -f1 -d'.')") },
+        { 0,        XF86XK_MonBrightnessDown,      spawn,          SHCMD("xbacklight -dec 5.000000 | notify-send 🔆$(xbacklight -get | cut -f1 -d'.')") }, 
+	{ MODKEY,                      XK_F5,      spawn,          SHCMD("xbacklight -dec 5.000000 | notify-send 🔆$(xbacklight -get | cut -f1 -d'.')") },  
+	{ 0,         XF86XK_AudioLowerVolume,      spawn,          SHCMD("pamixer -d 5 | notify-send 🔉$(pamixer --get-volume-human)") },
+	{ MODKEY,		      XK_F11,	   spawn,	   SHCMD("pamixer -d 5 | notify-send 🔉$(pamixer --get-volume-human)") },    
+	{ 0,                XF86XK_AudioMute,      spawn,          SHCMD("pamixer -t | notify-send 🔉$(pamixer --get-volume-human)") },
+	{ MODKEY,                     XK_F10,      spawn,          SHCMD("pamixer -t | notify-send 🔉$(pamixer --get-volume-human)") },  
+	{ 0,         XF86XK_AudioRaiseVolume,      spawn,          SHCMD("pamixer -i 5 | notify-send 🔉$(pamixer --get-volume-human)") },
+	{ MODKEY,                     XK_F12,      spawn,          SHCMD("pamixer -i 5 | notify-send 🔉$(pamixer --get-volume-human)") },
 	{ MODKEY|ShiftMask,		XK_w,	   spawn,	   SHCMD("$ABROWSER") },
 	{ MODKEY,             PrintScreenDWM,      spawn,          SHCMD("flameshot") },
 	{ 0,                  PrintScreenDWM,      spawn,          SHCMD("maim ~/Pictures/Screenshots/$(date +%s).png") },
