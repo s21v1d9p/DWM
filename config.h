@@ -178,7 +178,7 @@ static Key keys[] = {
         { ShiftMask,          PrintScreenDWM,      spawn,          SHCMD("maim --select | tee ~/Pictures/Screenshots/$(date +%s).png | xclip -selection clipboard -t image/png") },
         { Mod1Mask,           PrintScreenDWM,      spawn,          SHCMD("maim -i $(xdotool getactivewindow) ~/Pictures/Screenshots/$(date +%s).png") },
 	{ 0,		  XF86XK_ScreenSaver,	   spawn,          SHCMD("slock") },
-	{ MODKEY|ShiftMask,	        XK_t,      spawn,          SHCMD("thunar") },
+	{ MODKEY|ShiftMask,	        XK_t,      spawn,          SHCMD("pcmanfm") },
 	{ MODKEY,		       XK_F7,      spawn,	   SHCMD("slock")},
         { MODKEY,                  XK_Escape,      spawn,          SHCMD("sysact") },
 	{ MODKEY,		        XK_c,      spawn,          SHCMD("clipmenu") },
